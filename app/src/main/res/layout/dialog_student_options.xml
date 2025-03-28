@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Que souhaitez-vous faire avec cet étudiant ?"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btnModify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#800080"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="2dp"/>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supprimer"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#D32F2F"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="2dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Annuler"
+        android:textColor="#333333"
+        android:backgroundTint="#E0E0E0"
+        android:padding="12dp"
+        android:elevation="2dp"/>
+
+</LinearLayout>

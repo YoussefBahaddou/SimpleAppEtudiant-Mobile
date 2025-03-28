@@ -4,39 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="?android:attr/selectableItemBackground">
 
-        <TextView
-            android:id="@+id/textViewStudentId"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageViewStudent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:background="@drawable/edit_text_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID: 1"
-            android:textColor="#800080"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
 
-        <TextView
-            android:id="@+id/textViewStudentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom: Doe"
-            android:textSize="18sp"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/textViewStudentId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID: 1"
+                android:textColor="#800080"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewStudentFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prénom: John"
-            android:textSize="18sp"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/textViewStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom: Doe"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:layout_marginTop="4dp" />
 
+            <TextView
+                android:id="@+id/textViewStudentFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prénom: John"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/textViewStudentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de naissance: 01/01/2000"
+                android:textSize="16sp"
+                android:textColor="#555555"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+

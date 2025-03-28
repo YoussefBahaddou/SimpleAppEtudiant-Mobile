@@ -18,8 +18,10 @@ public class EtudiantService {
     private static final String KEY_ID = "id";
     private static final String KEY_NOM = "nom";
     private static final String KEY_PRENOM = "prenom";
+    private static final String KEY_DATE = "date";
+    private static final String KEY_IMAGE_PATH = "image_path";
 
-    private static final String[] COLUMNS = {KEY_ID, KEY_NOM, KEY_PRENOM};
+    private static final String[] COLUMNS = {KEY_ID, KEY_NOM, KEY_PRENOM, KEY_DATE, KEY_IMAGE_PATH};
 
     private MySQLiteHelper helper;
 
@@ -32,6 +34,9 @@ public class EtudiantService {
         ContentValues values = new ContentValues();
         values.put(KEY_NOM, e.getNom());
         values.put(KEY_PRENOM, e.getPrenom());
+        values.put(KEY_DATE, e.getDate());
+        values.put(KEY_IMAGE_PATH, e.getImagePath());
+
         long id = db.insert(TABLE_NAME, null, values);
         e.setId((int) id); // Assigner l'ID généré
         Log.d("insert", "Ajouté: " + e.getNom() + " ID: " + id);
@@ -43,6 +48,8 @@ public class EtudiantService {
         ContentValues values = new ContentValues();
         values.put(KEY_NOM, e.getNom());
         values.put(KEY_PRENOM, e.getPrenom());
+        values.put(KEY_DATE, e.getDate());
+        values.put(KEY_IMAGE_PATH, e.getImagePath());
 
         db.update(TABLE_NAME, values, KEY_ID + " = ?", new String[]{String.valueOf(e.getId())});
         db.close();
@@ -57,6 +64,16 @@ public class EtudiantService {
             e.setId(c.getInt(0));
             e.setNom(c.getString(1));
             e.setPrenom(c.getString(2));
+
+            // Handle date column
+            if (c.getColumnCount() > 3) {
+                e.setDate(c.getString(3));
+            }
+
+            // Handle image path column
+            if (c.getColumnCount() > 4) {
+                e.setImagePath(c.getString(4));
+            }
         }
         c.close();
         db.close();
@@ -83,6 +100,17 @@ public class EtudiantService {
                 e.setId(c.getInt(0));
                 e.setNom(c.getString(1));
                 e.setPrenom(c.getString(2));
+
+                // Handle date column
+                if (c.getColumnCount() > 3) {
+                    e.setDate(c.getString(3));
+                }
+
+                // Handle image path column
+                if (c.getColumnCount() > 4) {
+                    e.setImagePath(c.getString(4));
+                }
+
                 etudiants.add(e);
                 Log.d("Liste", "ID: " + e.getId() + " Nom: " + e.getNom());
             } while (c.moveToNext());

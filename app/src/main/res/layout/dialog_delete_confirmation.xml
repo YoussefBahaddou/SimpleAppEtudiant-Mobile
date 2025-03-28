@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textViewDeleteMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voulez-vous vraiment supprimer cet étudiant ?"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non"
+            android:textColor="#333333"
+            android:backgroundTint="#E0E0E0"
+            android:padding="12dp"
+            android:layout_marginEnd="12dp"
+            android:elevation="2dp"/>
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oui"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#D32F2F"
+            android:padding="12dp"
+            android:elevation="2dp"/>
+    </LinearLayout>
+</LinearLayout>

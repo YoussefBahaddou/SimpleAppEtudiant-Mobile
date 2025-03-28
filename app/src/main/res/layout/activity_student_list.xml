@@ -5,17 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Liste des Étudiants"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="16dp"
-        android:background="#800080"
-        android:textColor="#FFFFFF" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewStudents"
         android:layout_width="match_parent"
