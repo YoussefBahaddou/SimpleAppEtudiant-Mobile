@@ -1,19 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Nom -->
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom :"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrez le nom"
+        android:inputType="textPersonName" />
+
+    <!-- Prénom -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prénom :"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/prenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrez le prénom"
+        android:inputType="textPersonName" />
+
+    <!-- Bouton Valider -->
+    <Button
+        android:id="@+id/bn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Valider"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#800080"
+        android:textColor="#FFFFFF"
+        android:padding="8dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- ID Étudiant -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID Étudiant :"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrez l'ID"
+        android:inputType="number"
+        android:maxLength="5" />
+
+    <!-- Bouton Chercher -->
+    <Button
+        android:id="@+id/load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chercher"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#800080"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Résultat -->
+    <TextView
+        android:id="@+id/res"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginTop="8dp" />
+
+    <!-- Bouton Supprimer -->
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supprimer"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#800080"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Spacer to push the view all button to the bottom -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Bouton Voir Tous les Étudiants -->
+    <Button
+        android:id="@+id/btnViewAllStudents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voir Tous les Étudiants"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#800080"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+</LinearLayout>
