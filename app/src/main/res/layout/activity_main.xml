@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -11,186 +12,280 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Nom -->
+        <!-- Header -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom :"
-            android:textColor="@color/text_dark"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/nom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Entrez le nom"
-            android:inputType="textPersonName"
-            android:background="@drawable/edit_text_background"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Prénom -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prénom :"
-            android:textColor="@color/text_dark"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/prenom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Entrez le prénom"
-            android:inputType="textPersonName"
-            android:background="@drawable/edit_text_background"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Date de naissance -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date de naissance :"
-            android:textColor="@color/text_dark"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:id="@+id/selectedDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Aucune date sélectionnée"
-                android:padding="12dp"
-                android:background="@drawable/edit_text_background" />
-
-            <Button
-                android:id="@+id/btnSelectDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sélectionner"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/app_purple"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-        <!-- Photo -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Photo :"
-            android:textColor="@color/text_dark"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/imagePreview"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_gallery" />
-
-        <Button
-            android:id="@+id/btnSelectImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sélectionner une photo"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/app_purple"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Bouton Valider -->
-        <Button
-            android:id="@+id/bn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valider"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/app_purple"
-            android:textColor="@color/white"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- ID Étudiant -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ID Étudiant :"
-            android:textColor="@color/text_dark"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Entrez l'ID"
-            android:inputType="number"
-            android:maxLength="5"
-            android:background="@drawable/edit_text_background"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Boutons de recherche et suppression -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="16dp">
-
-            <Button
-                android:id="@+id/load"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Chercher"
-                android:backgroundTint="@color/app_purple"
-                android:textColor="@color/white"
-                android:padding="12dp"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/delete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Supprimer"
-                android:backgroundTint="@color/gray_medium"
-                android:textColor="@color/white"
-                android:padding="12dp" />
-        </LinearLayout>
-
-        <!-- Résultat -->
-        <TextView
-            android:id="@+id/res"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold"
-            android:padding="12dp"
+            android:text="Gestion des Étudiants"
+            android:textSize="24sp"
             android:textColor="@color/app_purple"
-            android:background="@drawable/edit_text_background"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Section: Ajouter un étudiant -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:minHeight="100dp" />
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ajouter un étudiant"
+                    android:textSize="18sp"
+                    android:textColor="@color/app_purple"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Nom -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Nom"
+                    app:boxStrokeColor="@color/app_purple"
+                    app:hintTextColor="@color/app_purple"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Prénom -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Prénom"
+                    app:boxStrokeColor="@color/app_purple"
+                    app:hintTextColor="@color/app_purple"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/prenom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Date de naissance -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Date de naissance"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/selectedDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Aucune date sélectionnée"
+                        android:padding="12dp"
+                        android:background="@drawable/date_selector_background"
+                        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSelectDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sélectionner"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/app_purple"
+                        android:layout_marginStart="8dp"
+                        app:cornerRadius="8dp"
+                        app:icon="@android:drawable/ic_menu_today"
+                        app:iconGravity="textStart"
+                        app:iconTint="@color/white"/>
+                </LinearLayout>
+
+                <!-- Photo -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Photo"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    app:strokeColor="@color/app_purple"
+                    app:strokeWidth="2dp"
+                    app:shapeAppearanceOverlay="@style/CircularImageView"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSelectImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sélectionner une photo"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/app_purple"
+                    android:layout_marginBottom="16dp"
+                    app:cornerRadius="8dp"
+                    app:icon="@android:drawable/ic_menu_camera"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/white"/>
+
+                <!-- Bouton Valider -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Valider"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/app_purple"
+                    android:padding="12dp"
+                    app:cornerRadius="8dp"
+                    app:icon="@android:drawable/ic_menu_save"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/white"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Section: Rechercher un étudiant -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rechercher un étudiant"
+                    android:textSize="18sp"
+                    android:textColor="@color/app_purple"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- ID Étudiant -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:hint="ID Étudiant"
+                    app:boxStrokeColor="@color/app_purple"
+                    app:hintTextColor="@color/app_purple"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="5"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Boutons de recherche et suppression -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/load"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Chercher"
+                        app:backgroundTint="@color/app_purple"
+                        android:textColor="@color/white"
+                        android:padding="12dp"
+                        android:layout_marginEnd="8dp"
+                        app:cornerRadius="8dp"
+                        app:icon="@android:drawable/ic_menu_search"
+                        app:iconGravity="textStart"
+                        app:iconTint="@color/white"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/delete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Supprimer"
+                        app:backgroundTint="@color/gray_medium"
+                        android:textColor="@color/white"
+                        android:padding="12dp"
+                        app:cornerRadius="8dp"
+                        app:icon="@android:drawable/ic_menu_delete"
+                        app:iconGravity="textStart"
+                        app:iconTint="@color/white"/>
+                </LinearLayout>
+
+                <!-- Résultat -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Résultat de la recherche"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/res"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:padding="16dp"
+                    android:textColor="@color/app_purple"
+                    android:background="@drawable/result_background"
+                    android:minHeight="100dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Bouton Voir Tous les Étudiants -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnViewAllStudents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Voir Tous les Étudiants"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/app_purple"
+            app:backgroundTint="@color/app_purple"
             android:textColor="@color/white"
             android:padding="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_menu_view"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white"/>
 
     </LinearLayout>
 </ScrollView>
