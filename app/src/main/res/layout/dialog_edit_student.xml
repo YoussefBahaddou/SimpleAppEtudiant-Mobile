@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Nom :"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_dark" />
 
     <EditText
         android:id="@+id/editTextNom"
@@ -18,14 +19,17 @@
         android:layout_height="wrap_content"
         android:hint="Entrez le nom"
         android:inputType="textPersonName"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Prénom :"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_dark" />
 
     <EditText
         android:id="@+id/editTextPrenom"
@@ -33,14 +37,17 @@
         android:layout_height="wrap_content"
         android:hint="Entrez le prénom"
         android:inputType="textPersonName"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date de naissance :"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_dark" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,15 +61,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Aucune date sélectionnée"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
         <Button
             android:id="@+id/btnChangeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Changer"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#800080"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/app_purple"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
@@ -71,7 +79,8 @@
         android:layout_height="wrap_content"
         android:text="Photo :"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_dark" />
 
     <ImageView
         android:id="@+id/imageViewPreview"
@@ -80,15 +89,17 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
         android:scaleType="centerCrop"
-        android:src="@android:drawable/ic_menu_gallery" />
+        android:src="@android:drawable/ic_menu_gallery"
+        android:background="@drawable/edit_text_background"
+        android:padding="2dp" />
 
     <Button
         android:id="@+id/btnChangeImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Changer la photo"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#800080"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/app_purple"
         android:layout_marginBottom="20dp" />
 
     <LinearLayout
@@ -103,15 +114,15 @@
             android:layout_height="wrap_content"
             android:text="Annuler"
             android:layout_marginEnd="12dp"
-            android:backgroundTint="#9E9E9E"
-            android:textColor="#FFFFFF" />
+            android:backgroundTint="@color/gray_medium"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrer"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF" />
+            android:backgroundTint="@color/app_purple"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

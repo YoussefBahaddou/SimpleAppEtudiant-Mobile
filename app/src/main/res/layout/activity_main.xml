@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/background_light">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nom :"
+            android:textColor="@color/text_dark"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -22,13 +24,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Entrez le nom"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
 
         <!-- Prénom -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prénom :"
+            android:textColor="@color/text_dark"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -36,29 +42,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Entrez le prénom"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
 
         <!-- Date de naissance -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date de naissance :"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="8dp" />
+            android:textColor="@color/text_dark"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:id="@+id/selectedDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Sélectionnez une date"
-                android:textSize="16sp"
+                android:text="Aucune date sélectionnée"
                 android:padding="12dp"
                 android:background="@drawable/edit_text_background" />
 
@@ -66,57 +74,57 @@
                 android:id="@+id/btnSelectDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choisir"
-                android:backgroundTint="#800080"
-                android:textColor="#FFFFFF"
+                android:text="Sélectionner"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/app_purple"
                 android:layout_marginStart="8dp" />
         </LinearLayout>
 
-        <!-- Image de l'étudiant -->
+        <!-- Photo -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Photo de l'étudiant :"
+            android:text="Photo :"
+            android:textColor="@color/text_dark"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery" />
 
         <Button
             android:id="@+id/btnSelectImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sélectionner une image"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
-
-        <ImageView
-            android:id="@+id/imagePreview"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_gallery"
-            android:background="@drawable/edit_text_background" />
+            android:text="Sélectionner une photo"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/app_purple"
+            android:layout_marginBottom="16dp" />
 
         <!-- Bouton Valider -->
         <Button
             android:id="@+id/bn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Valider"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF"
-            android:padding="8dp" />
+            android:backgroundTint="@color/app_purple"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
 
         <!-- ID Étudiant -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ID Étudiant :"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="16dp" />
+            android:textColor="@color/text_dark"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/id"
@@ -124,19 +132,40 @@
             android:layout_height="wrap_content"
             android:hint="Entrez l'ID"
             android:inputType="number"
-            android:maxLength="5" />
+            android:maxLength="5"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Bouton Chercher -->
-        <Button
-            android:id="@+id/load"
-            android:layout_width="wrap_content"
+        <!-- Boutons de recherche et suppression -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chercher"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF"
-            android:padding="8dp"
-            android:layout_marginTop="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/load"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Chercher"
+                android:backgroundTint="@color/app_purple"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Supprimer"
+                android:backgroundTint="@color/gray_medium"
+                android:textColor="@color/white"
+                android:padding="12dp" />
+        </LinearLayout>
 
         <!-- Résultat -->
         <TextView
@@ -145,21 +174,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginTop="8dp" />
-
-        <!-- Bouton Supprimer -->
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supprimer"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF"
-            android:padding="8dp"
-            android:layout_marginTop="8dp" />
+            android:padding="12dp"
+            android:textColor="@color/app_purple"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="16dp"
+            android:minHeight="100dp" />
 
         <!-- Bouton Voir Tous les Étudiants -->
         <Button
@@ -168,10 +187,9 @@
             android:layout_height="wrap_content"
             android:text="Voir Tous les Étudiants"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#800080"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/app_purple"
+            android:textColor="@color/white"
+            android:padding="16dp"
             android:layout_marginBottom="16dp" />
 
     </LinearLayout>

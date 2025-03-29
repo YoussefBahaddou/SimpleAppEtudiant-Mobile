@@ -6,6 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.emsi.appetudiant.adapter.StudentAdapter;
 import com.emsi.appetudiant.classes.Etudiant;
 import com.emsi.appetudiant.service.EtudiantService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,7 +35,8 @@ public class StudentListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewStudents;
     private StudentAdapter adapter;
     private EtudiantService etudiantService;
-    private int currentEditPosition = -1;
+    private TextView textViewEmpty;
+    private FloatingActionButton fabAddStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +47,49 @@ public class StudentListActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("Liste des Étudiants");
+            getSupportActionBar().setElevation(8f);
         }
+
+        // Initialize views
+        recyclerViewStudents = findViewById(R.id.recyclerViewStudents);
+        textViewEmpty = findViewById(R.id.textViewEmpty);
+        fabAddStudent = findViewById(R.id.fabAddStudent);
 
         // Initialize service
         etudiantService = new EtudiantService(this);
 
-        // Initialize RecyclerView
-        recyclerViewStudents = findViewById(R.id.recyclerViewStudents);
+        // Set up RecyclerView
         recyclerViewStudents.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewStudents.setHasFixedSize(true);
 
-        // Load students and set adapter
+        // Set up FAB click listener
+        fabAddStudent.setOnClickListener(v -> {
+            finish(); // Go back to MainActivity to add a new student
+        });
+
+        // Load students
         loadStudents();
     }
 
     private void loadStudents() {
         List<Etudiant> studentList = etudiantService.findAll();
-        adapter = new StudentAdapter(this, studentList);
-        recyclerViewStudents.setAdapter(adapter);
+
+        // Check if list is empty and update UI accordingly
+        if (studentList.isEmpty()) {
+            textViewEmpty.setVisibility(View.VISIBLE);
+            recyclerViewStudents.setVisibility(View.GONE);
+        } else {
+            textViewEmpty.setVisibility(View.GONE);
+            recyclerViewStudents.setVisibility(View.VISIBLE);
+
+            // Set up adapter
+            adapter = new StudentAdapter(this, studentList);
+            recyclerViewStudents.setAdapter(adapter);
+
+            // Apply animations
+            recyclerViewStudents.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this, R.anim.layout_animation));
+            recyclerViewStudents.scheduleLayoutAnimation();
+        }
     }
 
     @Override

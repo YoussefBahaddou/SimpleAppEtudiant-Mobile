@@ -29,11 +29,13 @@
         <activity
             android:name=".StudentListActivity"
             android:label="Liste des Étudiants"
+            android:theme="@style/StudentListTheme"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

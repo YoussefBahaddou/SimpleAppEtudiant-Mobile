@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -21,33 +20,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.emsi.appetudiant.R;
+import com.emsi.appetudiant.StudentListActivity;
 import com.emsi.appetudiant.classes.Etudiant;
 import com.emsi.appetudiant.service.EtudiantService;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     private List<Etudiant> studentList;
     private Context context;
     private EtudiantService etudiantService;
-    private SimpleDateFormat dateFormat;
     private Calendar calendar;
+    private SimpleDateFormat dateFormat;
 
     public StudentAdapter(Context context, List<Etudiant> studentList) {
         this.context = context;
         this.studentList = studentList;
         this.etudiantService = new EtudiantService(context);
-        this.dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         this.calendar = Calendar.getInstance();
+        this.dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     }
 
     @NonNull
@@ -65,15 +62,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.textViewStudentName.setText("Nom: " + student.getNom());
         holder.textViewStudentFirstName.setText("Prénom: " + student.getPrenom());
 
-        // Display date if available
+        // Handle date display
         if (student.getDate() != null && !student.getDate().isEmpty()) {
-            holder.textViewStudentDate.setVisibility(View.VISIBLE);
             holder.textViewStudentDate.setText("Date de naissance: " + student.getDate());
+            holder.textViewStudentDate.setVisibility(View.VISIBLE);
         } else {
             holder.textViewStudentDate.setVisibility(View.GONE);
         }
 
-        // Display image if available
+        // Handle image display
         if (student.getImagePath() != null && !student.getImagePath().isEmpty()) {
             File imgFile = new File(student.getImagePath());
             if (imgFile.exists()) {
@@ -92,6 +89,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public int getItemCount() {
         return studentList.size();
+    }
+
+    // Method to update image path for a student
+    public void updateImagePath(int position, String imagePath) {
+        if (position >= 0 && position < studentList.size()) {
+            Etudiant student = studentList.get(position);
+            student.setImagePath(imagePath);
+            etudiantService.update(student);
+            notifyItemChanged(position);
+        }
     }
 
     // Method to show options dialog (modify or delete)
@@ -134,8 +141,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         EditText editTextPrenom = dialogView.findViewById(R.id.editTextPrenom);
         TextView textViewDate = dialogView.findViewById(R.id.textViewDate);
         Button btnChangeDate = dialogView.findViewById(R.id.btnChangeDate);
-        Button btnChangeImage = dialogView.findViewById(R.id.btnChangeImage);
         ImageView imageViewPreview = dialogView.findViewById(R.id.imageViewPreview);
+        Button btnChangeImage = dialogView.findViewById(R.id.btnChangeImage);
         Button btnSave = dialogView.findViewById(R.id.btnSave);
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
 
@@ -144,61 +151,41 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         editTextPrenom.setText(student.getPrenom());
 
         // Set date if available
-        final String[] selectedDate = {student.getDate()};
-        if (selectedDate[0] != null && !selectedDate[0].isEmpty()) {
-            textViewDate.setText(selectedDate[0]);
+        if (student.getDate() != null && !student.getDate().isEmpty()) {
+            textViewDate.setText(student.getDate());
         } else {
             textViewDate.setText("Aucune date sélectionnée");
         }
 
         // Set image if available
-        final String[] selectedImagePath = {student.getImagePath()};
-        if (selectedImagePath[0] != null && !selectedImagePath[0].isEmpty()) {
-            File imgFile = new File(selectedImagePath[0]);
+        if (student.getImagePath() != null && !student.getImagePath().isEmpty()) {
+            File imgFile = new File(student.getImagePath());
             if (imgFile.exists()) {
                 imageViewPreview.setImageURI(Uri.fromFile(imgFile));
-                imageViewPreview.setVisibility(View.VISIBLE);
             }
         }
+
+        // Handle date change button
+        btnChangeDate.setOnClickListener(v -> {
+            showDatePickerDialog(textViewDate);
+        });
+
+        // Handle image change button
+        btnChangeImage.setOnClickListener(v -> {
+            // Launch image picker
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            ((StudentListActivity) context).startActivityForResult(intent, position);
+        });
 
         // Create and show the dialog
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Handle date change button click
-        btnChangeDate.setOnClickListener(v -> {
-            // Show DatePickerDialog
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    context,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            calendar.set(Calendar.YEAR, year);
-                            calendar.set(Calendar.MONTH, month);
-                            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                            selectedDate[0] = dateFormat.format(calendar.getTime());
-                            textViewDate.setText(selectedDate[0]);
-                        }
-                    },
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-            );
-            datePickerDialog.show();
-        });
-
-        // Handle image change button click
-        btnChangeImage.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            ((android.app.Activity) context).startActivityForResult(intent, position);
-            // We'll handle the result in the activity
-            dialog.dismiss();
-        });
-
         // Handle save button click
         btnSave.setOnClickListener(v -> {
             String newNom = editTextNom.getText().toString().trim();
             String newPrenom = editTextPrenom.getText().toString().trim();
+            String newDate = textViewDate.getText().toString().trim();
 
             if (newNom.isEmpty() || newPrenom.isEmpty()) {
                 Toast.makeText(context, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
@@ -208,8 +195,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             // Update student data
             student.setNom(newNom);
             student.setPrenom(newPrenom);
-            student.setDate(selectedDate[0]);
-            student.setImagePath(selectedImagePath[0]);
+
+            // Only set date if it's not the default text
+            if (!newDate.equals("Aucune date sélectionnée")) {
+                student.setDate(newDate);
+            }
+
             etudiantService.update(student);
 
             // Update the RecyclerView
@@ -221,6 +212,27 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
         // Handle cancel button click
         btnCancel.setOnClickListener(v -> dialog.dismiss());
+    }
+
+    // Method to show date picker dialog
+    private void showDatePickerDialog(TextView textView) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                context,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String selectedDate = dateFormat.format(calendar.getTime());
+                        textView.setText(selectedDate);
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
     }
 
     // Method to show delete confirmation dialog
@@ -257,22 +269,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         builder.create().show();
     }
 
-    // Method to update image path after activity result
-    public void updateImagePath(int position, String imagePath) {
-        if (position >= 0 && position < studentList.size()) {
-            Etudiant student = studentList.get(position);
-            student.setImagePath(imagePath);
-            etudiantService.update(student);
-            notifyItemChanged(position);
-        }
-    }
-
     public static class StudentViewHolder extends RecyclerView.ViewHolder {
         TextView textViewStudentId;
         TextView textViewStudentName;
         TextView textViewStudentFirstName;
         TextView textViewStudentDate;
-        ImageView imageViewStudent;
+        ShapeableImageView imageViewStudent;
 
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
